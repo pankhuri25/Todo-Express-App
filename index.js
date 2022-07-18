@@ -3,7 +3,12 @@ const port = 7000;
 
 const app =  express();
 
+// use express router
 app.use('/', require('./routes'));
+
+// set up view engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 // ${} is used for interpolating values directly. Use backticks to use them.
 app.listen(port, (err)=>{
