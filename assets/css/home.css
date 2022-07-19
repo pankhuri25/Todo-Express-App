@@ -1,8 +1,130 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 h1 {
     text-align: center;
+    color: rgb(93, 87, 87);
+    margin-top: 2rem;
 }
 
 .dropdown {
     display: inline-block;
     position: relative;
+}
+
+#container{
+    display: flex;
+    box-sizing: border-box;
+    margin-left: 45%;
+    width: 75%;
+}
+
+.form {
+    display: inline-block;
+}
+
+.delete-button a {
+    color: rgb(182, 14, 14);
+    font-size: 2rem;
+}
+
+ul {
+    list-style-type: none;
+    margin: 5%;
+    padding: 5px;
+    /* border: 1px solid #e5e5e5; */
+}
+
+.task {
+    border: 2px solid rgb(164, 164, 224);
+    border-radius: 1rem;
+}
+
+ul li {
+    padding: 10px;
+    /* padding-left: 0; */
+    display: flex;
+    justify-content: space-between;
+    align-items: inherit;
+    align-items: center;
+}
+ul li:hover {
+    background: #f3f3f3;
+    border-radius: 1rem;
+}
+
+.task-item {
+    float: left;
+}
+.category-label {
+    padding: 2rem;
+    border: 1px solid white;
+    color: white;
+    float: right;
+}
+select option[value="Personal"] {
+    background-color: rgba(236, 26, 26, 0.3);
+}
+  
+select option[value="School"] {
+    background: rgba(150, 150, 150, 0.3);
+}
+  
+select option[value="Work"] {
+    background: rgba(200, 200, 200, 0.3);
+}
+  
+select option[value="Family"] {
+    background: rgba(250, 250, 250, 0.3);
+}
+
+select option[value="Other"] {
+    background: rgba(250, 250, 250, 0.3);
+}
+
+#list input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+#list label {
+    position: relative;
+    cursor: pointer;
+}
+
+#list label:before {
+    content:'';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid #0079bf;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
+}
+#list input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+#list input:checked + label:before {
+    background: #0079bf;
+} 
+#list input:checked + label {
+    text-decoration: line-through;
 }

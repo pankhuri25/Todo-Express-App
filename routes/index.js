@@ -6,7 +6,7 @@ app.use(express.urlencoded({extended: true}));
 
 console.log("Router loaded");
 
-router.get('/', homeController.home);
+// router.get('/', homeController.home);
 // router.post('/add-task', homeController.addTask);
 
 module.exports = router;

@@ -28,6 +28,20 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
+app.get('/', (req, res)=>{
+    
+    Task.find({}, (err, tasks)=>{
+        if(err){
+            console.log("Error in fetching Task List");
+            return;
+        }
+        return res.render('home',{
+            title: "Tasks",
+            task_list: tasks
+        });
+    });
+});
+
 app.post('/add-task', (req, res)=>{
     console.log(req.body);
 
