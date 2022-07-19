@@ -4,9 +4,73 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title></title>
+    
+    <title><%= title %></title>
+
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/home.css'>
+    <script src='../assets/js/home.js'></script>
+    
 </head>
 <body>
     <h1>TODO App</h1>
+    <!-- <div id="container">
+        <input placeholder="Add Task" class="add-task" id="add" data-helloWord="asdasdas"/>
+        <span id="total-tasks">Total tasks: <span id="tasks-counter">0</span></span>
+        <ul id="list">
+          <li>
+            <input type="checkbox" id="task1" data-id="12" class="custom-checkbox">
+            <label for="task1">Buy groceries</label>
+            <img src="bin.svg" class="delete" data-id="12" />
+          </li>
+        </ul>
+    </div> -->
+
+    <form class="form" action="/add-task" method="POST">
+        <label for="description">Description</label>
+        <br>
+        <input id="description" type="text" name="description" placeholder="What's the Task?" required>
+        <br>
+
+        
+        <div class="dropdown">
+            <label for="category">Category</label>
+            <br>
+            <select name="category" id="category">
+            <option value="Personal" selected>Personal</option>
+            <option value="Work">Work</option>
+            <option value="School">School</option>
+            <option value="Family">Family</option>
+            <option value="Other">Other</option>
+        </select>
+            <br>
+        </div>
+
+        <label for="dueDate">Due Date</label>
+        <br>
+        <input type="date" name="dueDate" id="dueDate">
+        <br>
+
+        <button type="submit"> Add Task </button>
+    </form>
+
+    <ul>
+        <% for (let i of task_list) { %>
+            <div class="task"> 
+                <li>
+                    <p><%= i.description %></p>
+                    <p><%= i.category %></p>
+                    <p><%= i.dueDate.toDateString() %></p>
+                </li>
+            </div>
+            <div class="delete-button">
+                <!-- <a href="/delete-contact/?phone=<%= i.number %>"> -->
+                <a href="/delete-task/?id=<%= i._id %>">
+                    <i class="fa-solid fa-trash-can-xmark">DELETE</i>
+                </a>
+                <!-- </a> -->
+            </div>
+        <% } %>
+    </ul>
+    
 </body>
 </html>

@@ -1,3 +1,10 @@
+const Task = require('../models/tasks');
+const express = require('express');
+const app =  express();
+// app.use(express.urlencoded());
+// const bodyParser = require('body-parser');
+app.use(express.urlencoded({extended: true}));
+
 module.exports.home = function(req, res){
     
     Task.find({}, (err, tasks)=>{
@@ -11,4 +18,22 @@ module.exports.home = function(req, res){
         });
     });
 }
+
+// module.exports.addTask = function(req, res){
+//     console.log(req.body);
+
+//     // creating and pushing the contact details to our database:
+//     Task.create({
+//         description: req.body.description,
+//         category: req.body.category,
+//         dueDate: req.body.dueDate
+//     }, function(err, newTask){
+//         if(err){
+//             console.log("Error in creating task");
+//             return;
+//         }
+//         console.log("New Task:", newTask);
+//         return res.redirect('back');
+//     });
+// }
 
