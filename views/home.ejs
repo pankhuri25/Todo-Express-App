@@ -1,73 +1,122 @@
-<!-- <!DOCTYPE html> -->
 <html lang="en">
 <head>
-    <!-- <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    
+    <!-- Get title from controller -->
     <title><%= title %></title>
 
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
-
+    <!-- Using Font Awesome for icons -->
     <script  src="https://kit.fontawesome.com/b3348ae33f.js" crossorigin="anonymous"></script>
 
+    <!-- Importing my CSS style file -->
     <link rel='stylesheet' type='text/css' href='./css/home.css'>
-    <!-- <script src='../assets/js/home.js'></script> -->
-    
 </head>
+
 <body>
-    
-    <h1> <i class="fa-solid fa-clipboard-list"></i> TODO App</h1>
-    <div id="container">
-        <form class="form" action="/add-task" method="POST">
-            <label for="description">Description</label>
-            <br>
-            <input id="description" type="text" name="description" placeholder="What's the Task?" required>
-            <br>
-            
-            <div class="dropdown">
-                <label for="category">Category</label>
-                <br>
-                <select name="category" id="category">
-                <option value="Personal" selected>Personal</option>
-                <option value="Work">Work</option>
-                <option value="School">School</option>
-                <option value="Family">Family</option>
-                <option value="Other">Other</option>
-            </select>
-                <br>
-            </div>
+    <!-- Main Container where the app will be visualized -->
+    <section id="main-div">
 
-            <label for="dueDate">Due Date</label>
-            <br>
-            <input type="date" name="dueDate" id="dueDate">
-            <br>
+        <!-- Heading -->
+        <h1> <i class="fa-solid fa-clipboard-list"></i> TODO App</h1>
 
-            <button type="submit"> Add Task </button>
-        </form>
-    
-    </div>
+        <!-- Line separator to make visual divisions between different inputs (i.e Description, Category, Date) -->
+        <div class="line-separator"></div>
 
-    <div>
-        <ul id="list">
-            <% for (let i of task_list) { %>
-                <div class="task"> 
-                    <li>
-                        <div class="task-item">
-                            <p><%= i.description %></p>
-                            <%= i.dueDate.toDateString() %>
+        <!-- Form to take user input for creating new task -->
+        <div id="container">
+            <form class="form" action="/add-task" method="POST">
+
+                <!-- Description Div -->
+                <div class="desc">
+                    <label for="description">DESCRIPTION</label>
+                    <br>
+                    <input id="description" type="text" name="description" placeholder="What's the Task?" required>
+                    <br>
+                </div>
+
+                <!-- Line separator to make visual divisions between different inputs (i.e Description, Category, Date) -->
+                <div class="line-separator"></div>
+                
+                <!-- Div for inputs (category and due date) -->
+                <div class="data">
+                    <!-- Category div -->
+                    <div class="dropdown">
+                        <label for="category">CATEGORY</label>
+                        <br>
+                        <select name="category" id="category">
+                            <option value="n/a"> Choose a category </option>
+                            <option value="Personal">Personal</option>
+                            <option value="Work">Work</option>
+                            <option value="School">School</option>
+                            <option value="Family">Family</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <!-- Line separator to make visual divisions between different inputs (i.e Description, Category, Date) -->
+                    <div class="separator"></div>  
+
+                    <!-- Date Div -->
+                    <div class="date-div">
+                        <label for="dueDate">DUE DATE</label>
+                        <br>
+                        <input type="date" name="dueDate" id="dueDate">
+                        <br>
+                    </div>
+                </div>
+
+                <!-- Line separator to make visual divisions between different inputs (i.e Description, Category, Date) -->
+                <div class="line-separator"></div>
+
+                <!-- <button type="submit"> Add Task </button> -->
+
+                <div id="buttons">
+                    <!-- Add button to add tasks -->
+                    <button type="submit" id="add-button" > 
+                        <i class="fas fa-plus"></i>
+                        <span>ADD TASK</span> 
+                    </button>
+        
+                    <!-- Delete button to remove tasks from the todo list -->
+                    <button id="delete-button" type="submit" form="task-list">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>DELETE TASKS</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Unordered List to display tasks and an option delete tasks individually as well as collectively -->
+        <form action="/delete-tasks" method="POST" id="task-list">
+            <ul id="list">
+                <% for (let i of task_list) { %>
+                    <div class="task">
+                        <div> 
+                            <li>
+                                <input id="check" type="checkbox" name="id" value="<%= i._id %>" >
+                                <div class="task-item">
+                                    <p><%= i.description %></p>
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <!-- toDateString to display only date and not the time and week -->
+                                    <span><%= i.dueDate.toDateString() %></span>
+                                </div>
+                                <!-- Category label color as per the value -->
+                                <div class="category-label"  style="background-color: <%= color_list[i.category] %>;"><%= i.category %></div>
+                            </li>
                         </div>
-                        <div class="category-label"><%= i.category %></div>
-                    </li>
-                </div>
-                <div class="delete-button">
-                    <a href="/delete-task/?id=<%= i._id %>">
-                        <!-- <i class="fa-solid fa-trash"></i> -->
-                        <i class="fa-solid fa-circle-minus"></i>
-                    </a>
-                </div>
-            <% } %>
-        </ul>
-    </div>
+                    </div>
+                        <div class="delete-button">
+                            <a href="/delete-task/?id=<%= i._id %>">
+                                <!-- <i class="fa-solid fa-trash"></i> -->
+                                <i class="fa-solid fa-circle-minus"></i>
+                            </a>
+                        </div>
+                    
+                <% } %>
+            </ul>
+        </form>
+        <!-- Motivational message :) -->
+        <h4 style="text-align: center; margin-bottom: 2rem;"> You got this! Stay consistent with the Due Date! :) </h4>
+    </section>
+    <script type="text/javascript" src="./js/home.js"></script>
 </body>
 </html>

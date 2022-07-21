@@ -1,34 +1,151 @@
+/* Overall CSS style for tags */
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(93, 87, 87);
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(163, 196, 202);
+    
 }
-
 h1 {
     text-align: center;
     color: rgb(93, 87, 87);
     margin-top: 2rem;
 }
+label {
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+/* --------------------------------------------------------- */
+
+/* Section Styling */
+#main-div {
+    margin-top: 2%;
+    margin-left: 20%;
+    width: 60%;
+    background-color: #f3f3f3;
+    box-shadow: 3px 4px 4px rgb(71, 71, 134);
+    border-radius: 10px;
+    padding-top: 5px;
+}
+
+/* --------------------------------------------------------- */
+/* Separators (Lines) styling */
+
+/* Horizontal */
+.line-separator{
+    width: 100%;
+    height: 2px;
+    background-color: rgb(188, 182, 182);
+}
+/* Vertical */
+.separator{
+    width: 2px;
+    height: auto;
+    background-color: rgb(188, 182, 182);
+}
+
+/* --------------------------------------------------------- */
+
+/* Description Styling */
+.desc{
+    margin: 8px 20px;
+    width: 90%;
+}
+
+#description {
+    width: 100%;
+    background-color: #f3f3f3;
+    border: none;
+    margin-bottom: 15px;
+    padding: 5px 15px;
+    outline: none;
+}
+
+/* --------------------------------------------------------- */
+
+/* Category and Date Styling Div */
+.data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
 .dropdown {
-    display: inline-block;
+    /* display: inline-block; */
     position: relative;
+    margin-top: 5px;
+    margin: 8px 20px;
+    width: 50%;
 }
 
-#container{
+#category, #dueDate {
+    width: 100%;
+    background-color: #f3f3f3;
+    border: none;
+    margin-bottom: 15px;
+    padding: 5px 15px;
+    outline: none;
+    color: rgb(93, 87, 87);
+}
+
+.date-div {
+    /* margin-top: 5px; */
+    /* margin: 8px 20px; */
+    width: 39%;
+    margin: 8px 20px;
+}
+
+/* --------------------------------------------------------- */
+
+/* Add and Delete Buttons */
+#buttons {
     display: flex;
-    box-sizing: border-box;
-    margin-left: 45%;
-    width: 75%;
+    justify-content: center;
+    padding: 2rem 5px;
 }
 
-.form {
-    display: inline-block;
+#buttons button {
+    padding: 1.3rem;
+    color: white;
+    font-size: large;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 3px 4px 4px rgb(0, 0, 10);
+    cursor: pointer;
+}
+
+#add-button{
+    background-color:rgb(23, 180, 62);
+    margin-right: 10px;
+}
+
+#add-button:hover {
+    background-color:rgb(22, 165, 58);
+}
+
+#delete-button{
+    background-color:rgb(199, 47, 47);
+    margin-right: 5px;
+}
+#delete-button:hover {
+    background-color:rgb(175, 38, 38);
 }
 
 .delete-button a {
     color: rgb(182, 14, 14);
     font-size: 2rem;
 }
+.delete-button {
+    float: right;
+    margin-top: -3.5rem;
+    margin-left: 20rem;
+}
 
+/* --------------------------------------------------------- */
+
+/* Unordered Task List Styles */
 ul {
     list-style-type: none;
     margin: 5%;
@@ -36,9 +153,12 @@ ul {
     /* border: 1px solid #e5e5e5; */
 }
 
+/* Individual Task Card */
 .task {
+    margin-top: 1rem;
     border: 2px solid rgb(164, 164, 224);
     border-radius: 1rem;
+    width: 90%;
 }
 
 ul li {
@@ -55,76 +175,31 @@ ul li:hover {
 }
 
 .task-item {
+    margin-left: -3rem;
+    margin-top: -1rem;
     float: left;
+    width: 50%;
 }
+
+.task-item p{
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.task-item span {
+    font-size: small;
+}
+
+/* Category Labels */
 .category-label {
-    padding: 2rem;
+    width: 5rem;
     border: 1px solid white;
     color: white;
-    float: right;
-}
-select option[value="Personal"] {
-    background-color: rgba(236, 26, 26, 0.3);
-}
-  
-select option[value="School"] {
-    background: rgba(150, 150, 150, 0.3);
-}
-  
-select option[value="Work"] {
-    background: rgba(200, 200, 200, 0.3);
-}
-  
-select option[value="Family"] {
-    background: rgba(250, 250, 250, 0.3);
-}
-
-select option[value="Other"] {
-    background: rgba(250, 250, 250, 0.3);
-}
-
-#list input {
-    padding: 0;
-    height: initial;
-    width: initial;
-    margin-bottom: 0;
-    display: none;
+    padding: 1.3rem;
+    font-size: large;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 3px 4px 4px rgb(160, 160, 191);
     cursor: pointer;
-}
-
-#list label {
-    position: relative;
-    cursor: pointer;
-}
-
-#list label:before {
-    content:'';
-    -webkit-appearance: none;
-    background-color: transparent;
-    border: 2px solid #0079bf;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
-    padding: 10px;
-    display: inline-block;
-    position: relative;
-    vertical-align: middle;
-    cursor: pointer;
-    margin-right: 10px;
-}
-#list input:checked + label:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 2px;
-    left: 9px;
-    width: 6px;
-    height: 14px;
-    border: solid #fff;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-#list input:checked + label:before {
-    background: #0079bf;
-} 
-#list input:checked + label {
-    text-decoration: line-through;
+    text-align: center;
 }
